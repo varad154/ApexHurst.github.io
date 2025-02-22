@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Successful - GFX Forex Trading</title>
+    <link
+      rel="icon"
+      href="images/GFX_logo.png"
+      type="image/x-icon"
+      sizes="16x16 32x32 48x48"
+    />
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f4f8;
+            text-align: center;
+            position: relative;
+            overflow: hidden; /* Ensures confetti stays within view */
+        }
+        h1 {
+            color: #00796b;
+        }
+        p {
+            margin: 20px 0;
+        }
+        a {
+            text-decoration: none;
+            color: #00796b;
+            font-weight: bold;
+        }
+
+        .home-button {
+            background-color: #00796b; /* Green */
+            color: white;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .home-button:hover {
+            background-color: #00796b;
+        }
+
+        /* Dark mode styles */
+        body.dark-mode {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+
+        body.dark-mode h1 {
+            color: #ff6600;
+        }
+
+        body.dark-mode .home-button{
+            background-color: #ff6600;
+        }
+
+        
+    </style>
+</head>
+<body>
+
+    <h1>Payment Successful!</h1>
+    <p>Thank you for your payment. Your transaction has been processed successfully.</p>
+    <a href="index.html" class="home-button">Return to Home</a>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script>
+        // Confetti explosion on page load
+        function fireConfetti() {
+            const end = Date.now() + 5 * 1000; // Confetti duration: 5 seconds
+
+            const colors = ['#00c9a7', '#ffdd57', '#ff6f61', '#9c27b0', '#2196f3'];
+
+            (function frame() {
+                confetti({
+                    particleCount: 5,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    colors: colors
+                });
+                confetti({
+                    particleCount: 5,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    colors: colors
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            })();
+        }
+
+        // Trigger confetti on page load
+        window.onload = fireConfetti;
+    </script>
+
+    <script>
+        const toggleButton = document.getElementById('darkModeToggle');
+    
+        // Function to apply dark mode
+        function applyDarkMode(isDark) {
+            const elements = [
+                document.body,
+                document.querySelector('header'),
+                document.querySelector('footer'),
+                document.querySelector('input'),
+                document.querySelector('button'),
+                document.querySelector('.container'),
+                document.querySelector('.side-menu'),
+                document.querySelector('.hero'),
+            ];
+    
+            elements.forEach(element => {
+                if (element) {
+                    element.classList.toggle('dark-mode', isDark);
+                }
+            });
+    
+            // Update button text/icon
+            toggleButton.textContent = isDark ? '☀️' : '🌙';
+        }
+    
+        // Load saved mode from localStorage on page load
+        const isDarkMode = localStorage.getItem('darkMode') === 'true';
+        applyDarkMode(isDarkMode);
+    
+        // Toggle dark mode on button click
+        toggleButton.addEventListener('click', () => {
+            const currentMode = document.body.classList.contains('dark-mode');
+            const newMode = !currentMode;
+    
+            applyDarkMode(newMode);
+    
+            // Save the mode to localStorage
+            localStorage.setItem('darkMode', newMode);
+        });
+    </script>
+
+</body>
+</html>

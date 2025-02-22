@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ Accordion</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #2c3e50, #34495e);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .faq-container {
+            width: 60%;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+        }
+        .faq-item {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+        .faq-question {
+            width: 100%;
+            text-align: left;
+            background: transparent;
+            border: none;
+            padding: 15px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 15px;
+            transition: max-height 0.3s ease-in-out;
+            background: rgba(255, 255, 255, 0.3);
+            color: black;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 100px;
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="faq-container">
+        <div class="faq-item">
+            <button class="faq-question">What currency pairs can the trade?</button>
+            <div class="faq-answer">ApexHurst Works with ALL forex currency pairs.</div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question">What brokers does the ApexHurst support and which broker do you recommend?</button>
+            <div class="faq-answer">While we don't recommend any brokers to our customers, here are brokers that have been tested by us and our customers have had positive results with: IC Markets, Pepperstone, Tickmill, RannForex, XM, FIBO Group, Coinexx, RoboForex, ThinkMarkets, Vantage, Oanda, MexAtlantic, Windsor, Exness, FXCM, 8Cap.</div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question">What is monthly profit?</button>
+            <div class="faq-answer">It depends on the market conditions, but around 2% to 10% based on your desire risk.</div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question">What is minimium amount of capital to start trading with the ApexHurst ?</button>
+            <div class="faq-answer">$600 minimum to start but we recommend $1000 for start.</div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question">What are the payment methods?</button>
+            <div class="faq-answer">You can pay by any master or visa card or you can pay by cryptos.</div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question">Can I change my account number?</button>
+            <div class="faq-answer">No, each key is provided specific to the account type.</div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question">Can use the demo key on real account?</button>
+            <div class="faq-answer">.</div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question">How does the ApexHurst trading works?</button>
+            <div class="faq-answer">In the ApexHurst, an artificial intelligence (AI) is used and it automatically trades on your behalf.</div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question">How many accounts are connected to ApexHurst?</button>
+            <div class="faq-answer">By purchasing , only 1 real account can be connected.</div>
+        <!-- Add more FAQ items here following the same structure -->
+    </div>
+    
+    <script>
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const faqItem = button.parentElement;
+                faqItem.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>

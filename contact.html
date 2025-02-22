@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - GFX Forex Trading</title>
+    <link
+      rel="icon"
+      href="images/GFX_logo.png"
+      type="image/x-icon"
+      sizes="16x16 32x32 48x48"
+    />
+    <style>
+        /* Your existing CSS styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: #00796b;
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        header h1 {
+            font-size: 1.5rem;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        
+          /* Dark mode styles */
+          body.dark-mode {
+            background-color: #1e1e1e;
+            color: #e0e0e0;
+        }
+
+        header.dark-mode {
+            background-color: #1e1e1e;
+            color: white;
+        }
+
+        footer.dark-mode {
+            background-color: #1e1e1e;
+            color: #e0e0e0;
+        }
+
+        footer.dark-mode a {
+            color: #ff6600;
+        }
+
+        .side-menu.dark-mode {
+            background-color: #1e1e1e;
+        }
+
+        .container.dark-mode {
+            background-color: #1e1e1e;
+            color: #e0e0e0;
+            border: 1px solid #333;
+        }
+
+        .side-menu.dark-mode {
+            background-color: #1e1e1e;
+        }
+
+            /* General dark mode styles for inputs */
+        body.dark-mode input, body.dark-mode textarea {
+          background-color: #1e1e1e;
+          color: #e0e0e0;
+          border: 1px solid #333;
+        }
+
+          /* Autofill fix */
+        body.dark-mode input:-webkit-autofill {
+          -webkit-text-fill-color: #e0e0e0 !important; /* Force text color */
+          -webkit-box-shadow: 0 0 0px 1000px #1e1e1e inset !important; /* Force background color */
+          box-shadow: 0 0 0px 1000px #1e1e1e inset !important; /* Ensure consistency */
+          border: 1px solid #333 !important; /* Match border styles */
+        }
+
+
+        .form-section.dark-mode{
+            background-color: #1e1e1e;
+        }
+
+        body.dark-mode button {
+            background-color: #333;
+        }
+
+        body.dark-mode h2 {
+            color: #ddd;
+        }
+
+
+        span{
+            color: #ff6600;
+        }
+
+        nav {
+            display: none; /* Hide menu on mobile */
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        .side-menu {
+            position: fixed;
+            left: -250px;
+            top: 0;
+            width: 250px;
+            height: 100%;
+            background-color: #00796b;
+            color: white;
+            transition: left 0.3s ease;
+            padding: 20px;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+            z-index: 1500;
+        }
+
+        .side-menu ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 50px;
+        }
+
+        .side-menu ul li {
+            margin-bottom: 20px;
+        }
+
+        .side-menu ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        .side-menu ul li a:hover {
+            color: #00ccff;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.9rem;
+            cursor: pointer;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 80px auto 20px; /* Add margin to avoid overlap with fixed header */
+            padding: 20px;
+            background-color: #f0f4f8;
+            border-radius: 10px;
+            box-shadow: none
+        }
+
+        .form-section {
+            text-align: center;
+        }
+
+        .form-section h2 {
+            margin-bottom: 20px;
+            color: #00796b;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .form-section input, .form-section textarea {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f0f4f8;
+        }
+
+        .form-section textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-section button {
+            background-color: #00796b;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .form-section button:hover {
+            background-color: darkgreen;
+        }
+
+        footer {
+            background-color: #00796b;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        footer a {
+            color: #ff6600;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            nav {
+                display: none; /* Hide nav on mobile */
+            }
+
+            .hamburger {
+                display: block; /* Show hamburger on mobile */
+            }
+
+            .container {
+                margin-top: 100px; /* Margin for mobile */
+            }
+
+            header h1 {
+            font-size: 1.3rem;
+            }
+        }
+
+        @media (min-width: 769px) {
+            nav {
+                display: flex; /* Show nav on laptops and larger screens */
+            }
+
+            .hamburger {
+                display: none; /* Hide hamburger on larger screens */
+            }
+        }
+
+              /* Navigation Menu Styles */
+nav {
+    display: flex; /* Change to flex for better alignment */
+    align-items: center; /* Center items vertically */
+    justify-content: flex-end; /* Align items to the right */
+}
+
+nav ul {
+    display: flex; /* Display items in a row */
+    list-style: none; /* Remove bullet points */
+}
+
+nav ul li {
+    margin: 0 15px; /* Add spacing between menu items */
+}
+
+nav ul li a {
+    color: white; /* Text color */
+    text-decoration: none; /* Remove underline */
+    font-size: 1rem; /* Font size */
+    transition: color 0.3s ease; /* Smooth color transition on hover */
+}
+
+nav ul li a:hover {
+    color: #ff6600; /* Change color on hover */
+}
+
+.cta{
+    margin-top: 5px;
+}
+
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    nav {
+        display: none; /* Hide nav on mobile */
+    }
+
+    .hamburger {
+        display: block; /* Show hamburger on mobile */
+    }
+
+    .container {
+        margin-top: 100px; /* Margin for mobile */
+    }
+}
+
+@media (min-width: 769px) {
+    nav {
+        display: flex; /* Show nav on laptops and larger screens */
+    }
+
+    .hamburger {
+        display: none; /* Hide hamburger on larger screens */
+    }
+}
+#msg{
+    color: #00796b;
+    margin-top: 20px;
+    margin-left: 30px;
+    display: block;
+}
+        
+
+    </style>
+</head>
+<body>
+
+<header>
+    <h1><span>GFX</span> Forex Trading</h1>
+    <button id="darkModeToggle" style="background: none; border: none; color: white; cursor: pointer;">🌙</button>
+    <div class="hamburger" onclick="openMenu()">&#9776;</div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="plans.html">Plans</a></li>
+            <li><a href="monia.html">Testimonials</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="https://t.me/gfx_academy"> <span>Free</span> Signal </a></li>
+            <li><a href="trade7.html"> <span>VIP</span> Signal </a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Side Menu -->
+<div class="side-menu" id="sideMenu">
+    <span class="close-btn" onclick="closeMenu()">&times;</span>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="plans.html">Plans</a></li>
+        <li><a href="monia.html">Testimonials</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="https://t.me/gfx_academy"> <span>Free</span> Signal </a></li>
+        <li><a href="trade7.html"> <span>VIP</span> Signal </a></li>
+    </ul>
+</div>
+
+<div class="container">
+    <form class="form-section" name="submit-to-google-sheet">
+        <h2>Contact Us</h2>
+        <input type="text" id="name" name="name" placeholder="Your Name" required>
+        <input type="email" id="email" name="email" placeholder="Your Email" required>
+        <input type="text" id="phone" name="phone" placeholder="Your Phone Number" required>
+        <textarea id="message" name="message" placeholder="Your Message....150 Letters Max" required minlength="5" maxlength="150"></textarea>
+        <button type="submit" id="submitBtn">Send Message</button>
+    </form>
+    <div id="msg" style="color: #00796b; margin-top: 10px;"></div>
+    <div id="loading" style="display: none; margin-top: 10px; color: #ff6600;">
+        Processing your message, please wait...
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 GFX Forex. All Rights Reserved. Follow us on 
+        <a href="https://t.me/ForexGFXs" target="_blank">Telegram</a> |  
+        <a href="https://x.com/ForexGFX" target="_blank">Twitter</a>
+    </p>
+</footer>
+
+<script>
+    function openMenu() {
+        document.getElementById('sideMenu').style.left = '0';
+    }
+
+    function closeMenu() {
+        document.getElementById('sideMenu').style.left = '-250px';
+    }
+</script>
+
+<script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbytsu_ov9e5EuxKwGm08mi4xua74iROWLop8_Hc823VVB1_Lnayun0BSYw_nhJA5Sl3/exec';
+    const form = document.forms['submit-to-google-sheet'];
+    const msg = document.getElementById("msg");
+    const loading = document.getElementById("loading");
+
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        msg.innerHTML = ""; // Clear previous messages
+        loading.style.display = "block"; // Show loading message
+
+        fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+            .then(response => {
+                loading.style.display = "none"; // Hide loading message
+                msg.innerHTML = "Message sent successfully";
+                setTimeout(function() {
+                    // Redirect to the success page
+                    window.location.href = "msg.html"; // Replace with your success page URL
+                }, 0); // Adjust the timeout duration if needed
+            })
+            .catch(error => {
+                loading.style.display = "none"; // Hide loading message
+                console.error('Error!', error.message);
+                msg.innerHTML = "An error occurred. Please try again."; // Display error message
+            });
+    });
+</script>
+
+<script>
+    const toggleButton = document.getElementById('darkModeToggle');
+
+    // Function to apply dark mode
+    function applyDarkMode(isDark) {
+        const elements = [
+            document.body,
+            document.querySelector('header'),
+            document.querySelector('footer'),
+            document.querySelector('input'),
+            document.querySelector('button'),
+            document.querySelector('.container'),
+            document.querySelector('.side-menu')
+        ];
+
+        elements.forEach(element => {
+            if (element) {
+                element.classList.toggle('dark-mode', isDark);
+            }
+        });
+
+        // Update button text/icon
+        toggleButton.textContent = isDark ? '☀️' : '🌙';
+    }
+
+    // Load saved mode from localStorage on page load
+    const isDarkMode = localStorage.getItem('darkMode') === 'true';
+    applyDarkMode(isDarkMode);
+
+    // Toggle dark mode on button click
+    toggleButton.addEventListener('click', () => {
+        const currentMode = document.body.classList.contains('dark-mode');
+        const newMode = !currentMode;
+
+        applyDarkMode(newMode);
+
+        // Save the mode to localStorage
+        localStorage.setItem('darkMode', newMode);
+    });
+</script>
+</body>
+</html>

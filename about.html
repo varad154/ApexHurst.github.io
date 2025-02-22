@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ApexHurst Forex Trading</title>
+    <link
+      rel="icon"
+      href="images/GFX_logo.png"
+      type="image/x-icon"
+      sizes="16x16 32x32 48x48"
+    />
+    <style>
+
+        /* Your existing CSS styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: #00796b;
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        header h1 {
+            font-size: 1.5rem;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+         /* Dark mode styles */
+         body.dark-mode {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+
+        header.dark-mode {
+            background-color: #1e1e1e;
+            color: white;
+        }
+
+        footer.dark-mode {
+            background-color: #1e1e1e;
+            color: #e0e0e0;
+        }
+
+        footer.dark-mode a {
+            color: #ff6600;
+        }
+
+        .side-menu.dark-mode {
+            background-color: #1e1e1e;
+        }
+
+        .container.dark-mode {
+            background-color: #1e1e1e;
+            color: #e0e0e0;
+            border: 1px solid #333;
+        }
+
+        .plan-section.dark-mode {
+            background-color: #1e1e1e;  
+        }
+
+        body.dark-mode .plan {
+            background-color: #1e1e1e;
+        }
+
+        body.dark-mode h2 {
+            color: #ddd;
+        }
+
+        body.dark-mode button {
+            background-color: #333;
+        }
+
+        body.dark-mode h3 {
+            color: #ddd;
+        }
+
+        body.dark-mode .container-us  { 
+            background-color: #1e1e1e;
+            
+        }
+
+        body.dark-mode .testimonial{
+            background-color: #1e1e1e;
+        }
+
+        body.dark-mode .about-us {
+            background-color: #1e1e1e;
+        }
+
+        span{
+            color: #ff6600;
+        }
+
+        nav {
+            display: none; /* Hide menu on mobile */
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        .side-menu {
+            position: fixed;
+            left: -250px;
+            top: 0;
+            width: 250px;
+            height: 100%;
+            background-color: #00796b;
+            color: white;
+            transition: left 0.3s ease;
+            padding: 20px;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+            z-index: 1500;
+        }
+
+        .side-menu ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 50px;
+        }
+
+        .side-menu ul li {
+            margin-bottom: 20px;
+        }
+
+        .side-menu ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        .side-menu ul li a:hover {
+            color: #00ccff;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 80px auto 20px; /* Add margin to avoid overlap with fixed header */
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        
+
+        .form-section {
+            text-align: center;
+        }
+
+        .form-section h2 {
+            margin-bottom: 20px;
+            color: #00796b;
+        }
+
+        .form-section input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .form-section button {
+            background-color: #00796b;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .form-section button:hover {
+            background-color: darkgreen;
+        }
+
+        footer {
+            background-color: #00796b;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        footer a {
+            color: #ff6600;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+                     /* Navigation Menu Styles */
+nav {
+    display: flex; /* Change to flex for better alignment */
+    align-items: center; /* Center items vertically */
+    justify-content: flex-end; /* Align items to the right */
+}
+
+nav ul {
+    display: flex; /* Display items in a row */
+    list-style: none; /* Remove bullet points */
+}
+
+nav ul li {
+    margin: 0 15px; /* Add spacing between menu items */
+}
+
+nav ul li a {
+    color: white; /* Text color */
+    text-decoration: none; /* Remove underline */
+    font-size: 1rem; /* Font size */
+    transition: color 0.3s ease; /* Smooth color transition on hover */
+}
+
+nav ul li a:hover {
+    color: #ff6600; /* Change color on hover */
+}
+
+       /* Responsive Styles */
+@media (max-width: 768px) {
+    nav {
+        display: none; /* Hide nav on mobile */
+    }
+
+    .hamburger {
+        display: block; /* Show hamburger on mobile */
+    }
+
+    .container {
+        margin-top: 100px; /* Margin for mobile */
+    }
+
+    header h1 {
+            font-size: 1.3rem;
+        }
+}
+
+@media (min-width: 769px) {
+    nav {
+        display: flex; /* Show nav on laptops and larger screens */
+    }
+
+    .hamburger {
+        display: none; /* Hide hamburger on larger screens */
+    }
+}
+
+
+        
+ /* About Us Section */
+.about-us {
+    background-color: #ffffff; /* White background */
+    color: #333; /* Darker text for contrast */
+    padding: 100px 20px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.about-us h2 {
+    font-size: 3rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #333; /* Dark heading */
+    margin-bottom: 20px;
+    position: relative;
+    animation: fadeInDown 1s ease-out forwards;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.about-us p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    max-width: 800px;
+    margin: 0 auto;
+    color: #666; /* Slightly lighter paragraph text */
+    padding: 20px 0;
+    position: relative;
+    animation: fadeInUp 1.5s ease-out forwards;
+}
+
+.about-us .btn {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #ff6600; /* Bright button color for attention */
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    animation: zoomIn 2s ease forwards;
+    position: relative;
+}
+
+.about-us .btn:hover {
+    background-color: #ff9933;
+    transform: scale(1.1);
+}
+
+.about-us strong{
+    color: #ff6600;
+}
+
+.container-us h2{
+    height: auto;
+    color: #00796b;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes zoomIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .about-us h2 {
+        font-size: 2.5rem;
+    }
+
+    .about-us p {
+        font-size: 1rem;
+    }
+
+    .about-us .btn {
+        font-size: 1rem;
+        padding: 12px 30px;
+    }
+
+}
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1><span>ApexHurst</span> Forex Trading</h1>
+        <button id="darkModeToggle" style="background: none; border: none; color: white; cursor: pointer;">🌙</button>
+        <div class="hamburger" onclick="openMenu()">&#9776;</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About </a></li>
+                <li><a href="plans.html">Plans</a></li>
+                <li><a href="monia.html">Testimonials</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="https://t.me/gfx_academy"> <span>Free</span> Signal </a></li>
+                <li><a href="trade7.html"> <span>VIP</span> Signal </a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Side Menu -->
+<div class="side-menu" id="sideMenu">
+    <span class="close-btn" onclick="closeMenu()">&times;</span>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="plans.html">Plans</a></li>
+        <li><a href="monia.html">Testimonials</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="https://t.me/gfx_academy"> <span>Free</span> Signal </a></li>
+        <li><a href="trade7.html"> <span>VIP</span> Signal </a></li>
+    </ul>
+</div>
+    
+   <!-- About Us Section -->
+ <section id="about-us" class="about-us">
+    <div class="container-us">
+        <h2>About Us</h2>
+        <p>Welcome to <strong>ApexHurst</strong>, where passion meets precision in Forex trading. At ApexHurst, we don't just trade; we empower. Our mission is to guide aspiring traders from beginners to experts by providing tailored trading strategies, real-time insights, and powerful tools that simplify the complexities of Forex trading.</p>
+        <p>With years of experience navigating the financial markets, our team of professional traders has developed a trusted methodology that ensures our clients stay ahead of market trends and make informed trading decisions. We believe in hands-on learning, giving you the edge you need to master the art of trading.</p>
+        <p>Whether you're new to Forex or looking to sharpen your skills, ApexHurst provides comprehensive training programs, exclusive market insights, and personalized mentorship to transform your trading journey. Our goal is to see you succeed, with us by your side at every step.</p>
+        <p>Join us at ApexHurst and be part of a growing community where success is the only direction.</p>
+    </div>
+</section> 
+
+<footer>
+    <p>&copy; 2024 ApexHurst Forex. All Rights Reserved. Follow us on 
+        <a href="https://t.me/ForexGFXs" target="_blank">Telegram</a> |  
+        <a href="https://x.com/ForexGFX" target="_blank">Twitter</a>
+    </p>
+</footer>
+
+<script>
+    function openMenu() {
+        document.getElementById("sideMenu").style.left = "0";
+    }
+
+    function closeMenu() {
+        document.getElementById("sideMenu").style.left = "-250px";
+    }
+</script>
+
+<script>
+    const toggleButton = document.getElementById('darkModeToggle');
+
+    // Function to apply dark mode
+    function applyDarkMode(isDark) {
+        const elements = [
+            document.body,
+            document.querySelector('header'),
+            document.querySelector('footer'),
+            document.querySelector('input'),
+            document.querySelector('button'),
+            document.querySelector('.container'),
+            document.querySelector('.side-menu'),
+            document.querySelector('.hero'),
+        ];
+
+        elements.forEach(element => {
+            if (element) {
+                element.classList.toggle('dark-mode', isDark);
+            }
+        });
+
+        // Update button text/icon
+        toggleButton.textContent = isDark ? '☀️' : '🌙';
+    }
+
+    // Load saved mode from localStorage on page load
+    const isDarkMode = localStorage.getItem('darkMode') === 'true';
+    applyDarkMode(isDarkMode);
+
+    // Toggle dark mode on button click
+    toggleButton.addEventListener('click', () => {
+        const currentMode = document.body.classList.contains('dark-mode');
+        const newMode = !currentMode;
+
+        applyDarkMode(newMode);
+
+        // Save the mode to localStorage
+        localStorage.setItem('darkMode', newMode);
+    });
+</script>
+</body>
+</html>

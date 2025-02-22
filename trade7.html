@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIP Strategy Access</title>
+    <style>
+         body {
+    font-family: 'Helvetica Neue', sans-serif;
+    background: linear-gradient(135deg, #0f0f0f, #2e2e2e);
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    overflow: hidden;
+    background-size: cover;
+}
+
+h1 {
+    font-size: 3.5em;
+    margin-bottom: 20px;
+    text-shadow: 4px 4px 20px rgba(0, 0, 0, 0.6);
+    color: #fff;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.container {
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 30px;
+    padding: 40px;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(12px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    animation: slideUp 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.code-input {
+    width: 100%;
+    padding: 15px;
+    margin: 20px 0;
+    border: 2px solid #fff;
+    border-radius: 12px;
+    font-size: 1.2em;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    text-align: center;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.code-input:focus {
+    outline: none;
+    border-color: #2575fc;
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 8px rgba(37, 117, 252, 0.6);
+}
+
+.btn {
+    width: 100%;
+    padding: 15px;
+    background-color: #121212;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.3em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-sizing: border-box;
+}
+
+.btn:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+    box-shadow: 0 5px 20px rgba(37, 117, 252, 0.5);
+}
+
+.btn:disabled {
+    background-color: #555;
+    cursor: not-allowed;
+}
+
+.error, .success {
+    font-size: 1.2em;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.error {
+    color: #f44336;
+}
+
+.success {
+    color: #4CAF50;
+}
+
+.expiration {
+    font-size: 0.95em;
+    color: #fff;
+    opacity: 0.8;
+    margin-top: 10px;
+}
+
+.email-input {
+    width: 80%;
+    max-width: 400px;
+    padding: 12px;
+    margin: 15px 0;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-size: 1.2em;
+    background: rgba(255, 255, 255, 0.3);
+    color: #fff;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.email-input:focus {
+    outline: none;
+    border-color: #2575fc;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+#proceed-btn {
+    width: 80%;
+    padding: 12px 25px;
+    background-color: #2e2e2e;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.4em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#proceed-btn:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+#proceed-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+    </style>
+</head>
+
+<body>
+    <div id="description-section" class="container">
+        <h1>R<span style="color: #f44336;">o</span><span style="color: #f44336;">o</span>m <span style="color: #f44336;">VIP</span></h1>
+        <h2></h2>
+        <p>This premium strategy offers daily trading signals, valid for 30 days, to enhance your trading expertise.</p>
+        <h2>Cost: ₦<span style="color: #f44336;">50,000</span></h2>
+        <input type="email" id="email-input" class="email-input" placeholder="Enter your email" required />
+        <button id="proceed-btn" class="btn">Proceed to Pay</button>
+    </div>
+
+    <div id="code-section" class="container" style="display: none;">
+        <h1>Unlock Your Access</h1>
+        <p id="generated-code" class="code-display"></p>
+        <input type="text" id="code-input" class="code-input" placeholder="Enter access code" />
+        <button id="submit-btn" class="btn">Submit</button>
+        <div id="status"></div>
+        <p id="expiration" class="expiration"></p>
+    </div>
+
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+<script>
+    const descriptionSection = document.getElementById('description-section');
+    const codeSection = document.getElementById('code-section');
+    const proceedBtn = document.getElementById('proceed-btn');
+    const generatedCodeElement = document.getElementById('generated-code');
+    const expirationElement = document.getElementById('expiration');
+    const submitBtn = document.getElementById('submit-btn');
+
+    // Initialize countdown on page load
+    document.addEventListener('DOMContentLoaded', () => {
+        const savedCodeData = JSON.parse(localStorage.getItem('generatedCodeData'));
+        if (savedCodeData) {
+            const currentTime = new Date().getTime();
+            if (currentTime < savedCodeData.expiration) {
+                showCodeSection(savedCodeData.code, savedCodeData.expiration);
+            } else {
+                expirationElement.textContent = 'This code has expired.';
+                localStorage.removeItem('generatedCodeData');
+                localStorage.removeItem('hasPaid');
+            }
+        }
+    });
+
+    if (localStorage.getItem('hasPaid') === 'true') {
+        const savedCodeData = JSON.parse(localStorage.getItem('generatedCodeData'));
+        if (savedCodeData) {
+            showCodeSection(savedCodeData.code, savedCodeData.expiration);
+        }
+    }
+
+    proceedBtn.addEventListener('click', () => {
+        const emailInput = document.getElementById('email-input');
+        const email = emailInput.value.trim();
+
+        if (!email) {
+            alert('Please enter a valid email address.');
+            return;
+        }
+
+        const handler = PaystackPop.setup({
+            key: 'pk_test_7c8e764ec8ab7b8b7d4b59c113550206716a16b4',
+            email: email,
+            amount: 50000 * 100,
+            currency: 'NGN',
+            callback: (response) => {
+                alert(`Payment successful. Transaction ref: ${response.reference}`);
+                const generatedCode = generateUniqueCode();
+                const expirationTime = new Date().getTime() + 30 * 24 * 60 * 60 * 1000;
+
+                const codeData = { code: generatedCode, expiration: expirationTime, used: false };
+                localStorage.setItem('generatedCodeData', JSON.stringify(codeData));
+                localStorage.setItem('hasPaid', 'true');
+
+                showCodeSection(generatedCode, expirationTime);
+            },
+            onClose: () => alert('Payment was not completed.'),
+        });
+
+        handler.openIframe();
+    });
+
+    function generateUniqueCode() {
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        let code = '';
+        for (let i = 0; i < 8; i++) {
+            code += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        return code;
+    }
+
+    function showCodeSection(code, expirationTime) {
+        descriptionSection.style.display = 'none';
+        codeSection.style.display = 'block';
+        generatedCodeElement.textContent = `Your access code: ${code}`;
+        updateExpirationDisplay(expirationTime);
+
+        const interval = setInterval(() => {
+            const timeRemaining = expirationTime - new Date().getTime();
+            if (timeRemaining <= 0) {
+                clearInterval(interval);
+                expirationElement.textContent = 'This code has expired.';
+                localStorage.removeItem('generatedCodeData');
+            } else {
+                updateExpirationDisplay(expirationTime);
+            }
+        }, 1000);
+    }
+
+    function updateExpirationDisplay(expirationTime) {
+        const timeRemaining = expirationTime - new Date().getTime();
+        if (timeRemaining > 0) {
+            const days = Math.floor(timeRemaining / (24 * 60 * 60 * 1000));
+            const hours = Math.floor((timeRemaining % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
+            const minutes = Math.floor((timeRemaining % (60 * 60 * 1000)) / (60 * 1000));
+            const seconds = Math.floor((timeRemaining % (60 * 1000)) / 1000);
+            expirationElement.textContent = `Expires in: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+        } else {
+            expirationElement.textContent = 'This code has expired.';
+        }
+    }
+
+    submitBtn.addEventListener('click', () => {
+        const codeInput = document.getElementById('code-input').value.trim();
+        const status = document.getElementById('status');
+        const savedCodeData = JSON.parse(localStorage.getItem('generatedCodeData'));
+
+        if (!savedCodeData || savedCodeData.code !== codeInput) {
+            status.innerHTML = '<span class="error">Invalid code</span>';
+            return;
+        }
+
+        const currentTime = new Date().getTime();
+        if (currentTime > savedCodeData.expiration) {
+            status.innerHTML = '<span class="error">This code has expired.</span>';
+            return;
+        }
+
+        if (savedCodeData.used) {
+            status.innerHTML = '<span class="info">This code been used by you. Please wait...</span>';
+            setTimeout(() => {
+                window.location.href = 'https://t.me/+BYxWCP13GBliNDRk';
+            }, 5000);
+            return;
+        }
+
+        status.innerHTML = '<span class="success">Code accepted! Please wait...</span>';
+        setTimeout(() => {
+            savedCodeData.used = true;
+            localStorage.setItem('generatedCodeData', JSON.stringify(savedCodeData));
+            window.location.href = 'https://t.me/+BYxWCP13GBliNDRk';
+        }, 5000);
+    });
+</script>
+
+</body>
+</html>
